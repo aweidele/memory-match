@@ -13,10 +13,12 @@ class Game {
   _initGame() {
     const cardList = Array.from(Array(this.gameSize).keys());
     this.cards = [...cardList, ...cardList].sort((x, y) => Math.random() - 0.5);
+    this.moves = [];
 
-    this.cards.forEach((cardNum) => {
+    this.cards.forEach((cardNum, i) => {
       const card = document.createElement("div");
       card.classList.add("card");
+      card.dataset.card = i;
 
       card.innerHTML = `
           <div class="card__inner">
@@ -27,25 +29,28 @@ class Game {
           </div>`;
 
       board.append(card);
-      card.dataset.card = cardNum;
       //   board.insertAdjacentHTML("beforeend", html);
     });
   }
 
-  _cardClick() {
-    alert("yes");
+  _cardClick(e) {
+    const card = e.target.closest(".card");
+    const cardNum = card.dataset.card;
+    if (this.moves.length === 2) return this._checkMatch();
+    if (this.moves.find((v) => v === cardNum)) return;
+
+    this.moves.push(cardNum);
+    console.log(this.moves);
+    card.classList.add("flipped");
+  }
+
+  _checkMatch() {
+    const cardEl = document.querySelectorAll(".card");
+    setTimeout(
+      () => cardEl.forEach((c) => c.classList.remove("flipped")),
+      1000
+    );
   }
 }
 
 const game = new Game();
-
-/*
-            <div class="card">
-              <div class="card__inner">
-                <div class="card__back"></div>
-                <div class="card__front">
-                  <img src="images/bird_Bird1.png" />
-                </div>
-              </div>
-            </div>
-*/
