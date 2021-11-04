@@ -1,0 +1,34 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "Tic Tac Toe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aweidele/tictactoe"
+  },
+  "author": "Aaron Weidele",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aweidele/tictactoe/issues"
+  },
+  "homepage": "https://github.com/aweidele/tictactoe#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-pxtorem": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^5.0.0",
+    "gulp-terser": "^2.1.0",
+    "pump": "^1.0.2",
+    "sass": "^1.43.2"
+  },
+  "dependencies": {
+    "gulp-group-css-media-queries": "^1.2.2",
+    "node-sass": "^6.0.1",
+    "npm": "^6.11.3"
+  }
+}

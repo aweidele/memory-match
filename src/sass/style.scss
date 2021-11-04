@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  transition: all 0.25s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+}
+
+:root {
+  --primary: #171a21;
+  --secondary: #a5c4d4;
+
+  --accent-1: #fcba04;
+  --accent-2: #7b6d8d;
+  --accent-3: #8499b1;
+  --accent-4: #981b1e;
+
+  --bg-lt: #e6eaef;
+
+  --white: #ffffff;
+  --black: #171a21;
+}
+
+@mixin hover() {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 42px;
+  color: var(--primary);
+
+  @media screen and (min-width: 800px) {
+    font-size: 60px;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-lt);
+
+  > main {
+    flex-grow: 1;
+  }
+
+  > footer {
+    background-color: var(--primary);
+    color: var(--white);
+    font-size: 12px;
+    text-align: center;
+    padding: 10px 20px;
+
+    a {
+      color: var(--white);
+      @include hover {
+        color: var(--accent-1);
+      }
+    }
+  }
+}
+
+.card {
+  margin: 10px;
+  background: transparent;
+  width: 152px;
+  height: 188px;
+  perspective: 1000px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1.2s;
+    transform-style: preserve-3d;
+  }
+
+  &:hover .card__inner {
+    transform: rotateY(180deg);
+  }
+
+  &__back,
+  &__front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 4px solid var(--white);
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px var(--primary);
+  }
+
+  &__back {
+    background-color: var(--accent-4);
+    background-image: url(../images/card-back.svg);
+    background-size: 12px 12px;
+  }
+
+  &__front {
+    background-color: var(--accent-3);
+    transform: rotateY(180deg);
+  }
+}
+
+.board {
+  max-width: 1400px;
+  margin: auto;
+
+  &__inner {
+    display: flex;
+    margin: 0 -10px;
+  }
+}
