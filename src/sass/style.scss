@@ -82,6 +82,19 @@ h1 {
   }
 }
 
+.board {
+  max-width: 1400px;
+  padding: 20px;
+  margin: auto;
+
+  &__inner {
+    display: flex;
+    margin: 0 -10px;
+    flex-wrap: wrap;
+    // justify-content: space-around;
+  }
+}
+
 .card {
   margin: 10px;
   background: transparent;
@@ -128,15 +141,5 @@ h1 {
   &__front {
     background-color: var(--accent-3);
     transform: rotateY(180deg);
-  }
-}
-
-.board {
-  max-width: 1400px;
-  margin: auto;
-
-  &__inner {
-    display: flex;
-    margin: 0 -10px;
   }
 }

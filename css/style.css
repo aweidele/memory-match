@@ -70,6 +70,18 @@ h1 {
   color: var(--accent-1);
 }
 
+.board {
+  max-width: 1400px;
+  padding: 1.25rem;
+  margin: auto;
+}
+
+.board__inner {
+  display: flex;
+  margin: 0 -0.625rem;
+  flex-wrap: wrap;
+}
+
 .card {
   margin: 0.625rem;
   background: transparent;
@@ -117,16 +129,6 @@ h1 {
 .card__front {
   background-color: var(--accent-3);
   transform: rotateY(180deg);
-}
-
-.board {
-  max-width: 1400px;
-  margin: auto;
-}
-
-.board__inner {
-  display: flex;
-  margin: 0 -0.625rem;
 }
 
 @media screen and (min-width: 800px) {
