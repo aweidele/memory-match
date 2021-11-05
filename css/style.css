@@ -72,21 +72,21 @@ h1 {
 
 .board {
   max-width: 1400px;
-  padding: 1.25rem;
-  margin: auto;
+  margin: 1.25rem auto;
+  padding: 0 1.25rem;
 }
 
 .board__inner {
   display: flex;
-  margin: 0 -0.625rem;
+  margin: 0 -0.3125rem;
   flex-wrap: wrap;
 }
 
 .card {
-  margin: 0.625rem;
+  margin: 0.3125rem;
   background: transparent;
-  width: 9.5rem;
-  height: 11.75rem;
+  width: 6.5rem;
+  height: 8rem;
   perspective: 1000px;
   cursor: pointer;
   transition: all 1s;
@@ -134,7 +134,7 @@ h1 {
 .card__back {
   background-color: var(--accent-4);
   background-image: url(../images/card-back.svg);
-  background-size: 12px 12px;
+  background-size: 8px 8px;
 }
 
 .card__front {
@@ -151,8 +151,50 @@ h1 {
   border-color: var(--primary);
 }
 
+.game-status {
+  max-width: 1400px;
+  margin: 1.25rem auto;
+  padding: 0 1.25rem;
+  display: flex;
+}
+
+.game-status>div {
+  margin-right: 0.625rem;
+}
+
+.game-status input {
+  height: 2.375rem;
+  border: 0.0625rem solid var(--accent-2);
+  border-radius: 0.1875rem;
+  padding: 0 0.3125rem 0 1.25rem;
+}
+
+.btn {
+  height: 2.375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 0.625rem 1.25rem;
+  background: var(--accent-2);
+  color: var(--white);
+  cursor: pointer;
+}
+
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 3.75rem;
+  }
+
+  .board__inner {
+    margin: 0 -0.625rem;
+  }
+
+  .card {
+    width: 9.5rem;
+    height: 11.75rem;
+    margin: 0.625rem;
+  }
+
+  .card__back {
+    background-size: 12px 12px;
   }
 }

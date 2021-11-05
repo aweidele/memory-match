@@ -1,15 +1,29 @@
 const images = Array.from(Array(12).keys());
 const board = document.querySelector(".board__inner");
+const replay = document.querySelector(".game-status__replay");
+const boardSize = document.querySelector(".game-status__size");
 
 class Game {
   constructor() {
     this.gameSize = 4;
 
     board.addEventListener("click", this._cardClick.bind(this));
+    replay.addEventListener("click", this._initGame.bind(this));
     this._initGame();
   }
 
   _initGame() {
+    const s = Number(boardSize.value);
+    if (s < 4) {
+      boardSize.value = 4;
+      this.gameSize = 4;
+    } else if (s > 12) {
+      boardSize.value = 12;
+      this.gameSize = 12;
+    } else {
+      this.gameSize = s;
+    }
+
     this.cardList = Array.from(Array(this.gameSize).keys());
     this.cards = [...this.cardList, ...this.cardList].sort(
       (x, y) => Math.random() - 0.5
@@ -17,6 +31,7 @@ class Game {
     this.moves = [];
     this.matches = 0;
 
+    board.innerHTML = "";
     this.cards.forEach((cardNum, i) => {
       const card = document.createElement("div");
       card.classList.add("card");
@@ -51,21 +66,30 @@ class Game {
     if (this.moves.length >= 2) return this._checkMatch();
   }
 
+  _resetFlipped(cardEl) {
+    cardEl.forEach((c) => c.classList.remove("flipped"));
+    this.moves = [];
+  }
+
+  _endGame() {
+    console.log(this.matches, this.gameSize);
+    if (this.matches < this.gameSize) return;
+  }
+
   _checkMatch() {
     const [move1, move2] = this.moves;
     const cardEl = document.querySelectorAll(".card");
 
     if (this.cards[move1] === this.cards[move2]) {
-      console.log("MATCH!!");
       this.matches++;
       cardEl[move1].classList.add("matched");
       cardEl[move2].classList.add("matched");
+      this._resetFlipped(cardEl);
+
+      return _endGame();
     }
 
-    setTimeout(() => {
-      cardEl.forEach((c) => c.classList.remove("flipped"));
-      this.moves = [];
-    }, 2000);
+    setTimeout(() => this._resetFlipped(cardEl), 2000);
   }
 }
 

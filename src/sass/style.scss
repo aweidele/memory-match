@@ -84,25 +84,35 @@ h1 {
 
 .board {
   max-width: 1400px;
-  padding: 20px;
-  margin: auto;
+  margin: 20px auto;
+  padding: 0 20px;
 
   &__inner {
     display: flex;
-    margin: 0 -10px;
+    margin: 0 -5px;
     flex-wrap: wrap;
     // justify-content: space-around;
+
+    @media screen and (min-width: 800px) {
+      margin: 0 -10px;
+    }
   }
 }
 
 .card {
-  margin: 10px;
+  margin: 5px;
   background: transparent;
-  width: 152px;
-  height: 188px;
+  width: 104px;
+  height: 128px;
   perspective: 1000px;
   cursor: pointer;
   transition: all 1s;
+
+  @media screen and (min-width: 800px) {
+    width: 152px;
+    height: 188px;
+    margin: 10px;
+  }
 
   img {
     width: 100%;
@@ -148,7 +158,11 @@ h1 {
   &__back {
     background-color: var(--accent-4);
     background-image: url(../images/card-back.svg);
-    background-size: 12px 12px;
+    background-size: 8px 8px;
+
+    @media screen and (min-width: 800px) {
+      background-size: 12px 12px;
+    }
   }
 
   &__front {
@@ -163,4 +177,32 @@ h1 {
       border-color: var(--primary);
     }
   }
+}
+
+.game-status {
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: flex;
+
+  > div {
+    margin-right: 10px;
+  }
+
+  input {
+    height: 38px;
+    border: 1px solid var(--accent-2);
+    border-radius: 3px;
+    padding: 0 5px 0 20px;
+  }
+}
+
+.btn {
+  height: 38px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 10px 20px;
+  background: var(--accent-2);
+  color: var(--white);
+  cursor: pointer;
 }
