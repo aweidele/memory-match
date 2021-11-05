@@ -1,4 +1,5 @@
 const images = Array.from(Array(12).keys());
+const boardOuter = document.querySelector(".board");
 const board = document.querySelector(".board__inner");
 const replay = document.querySelector(".game-status__replay");
 const boardSize = document.querySelector(".game-status__size");
@@ -13,6 +14,7 @@ class Game {
   }
 
   _initGame() {
+    boardOuter.classList.remove("game-over");
     const s = Number(boardSize.value);
     if (s < 4) {
       boardSize.value = 4;
@@ -74,6 +76,8 @@ class Game {
   _endGame() {
     console.log(this.matches, this.gameSize);
     if (this.matches < this.gameSize) return;
+
+    boardOuter.classList.add("game-over");
   }
 
   _checkMatch() {
@@ -86,7 +90,7 @@ class Game {
       cardEl[move2].classList.add("matched");
       this._resetFlipped(cardEl);
 
-      return _endGame();
+      return this._endGame();
     }
 
     setTimeout(() => this._resetFlipped(cardEl), 2000);

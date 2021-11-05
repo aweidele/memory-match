@@ -74,12 +74,41 @@ h1 {
   max-width: 1400px;
   margin: 1.25rem auto;
   padding: 0 1.25rem;
+  overflow: hidden;
+  position: relative;
 }
 
 .board__inner {
   display: flex;
   margin: 0 -0.3125rem;
   flex-wrap: wrap;
+  transition: all 1s;
+}
+
+.board__gameover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 6.25rem;
+  text-align: center;
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: var(--primary);
+  text-shadow: 1px 1px 3px var(--black);
+  letter-spacing: 0.2em;
+  transform: translateY(-100%);
+  transition: all 1s;
+}
+
+.board.game-over .board__inner {
+  opacity: 0.3;
+}
+
+.board.game-over .board__gameover {
+  transform: translateY(0);
 }
 
 .card {

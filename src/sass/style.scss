@@ -86,15 +86,46 @@ h1 {
   max-width: 1400px;
   margin: 20px auto;
   padding: 0 20px;
+  overflow: hidden;
+  position: relative;
 
   &__inner {
     display: flex;
     margin: 0 -5px;
     flex-wrap: wrap;
+    transition: all 1s;
     // justify-content: space-around;
 
     @media screen and (min-width: 800px) {
       margin: 0 -10px;
+    }
+  }
+
+  &__gameover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 100px;
+    text-align: center;
+    font-size: 48px;
+    text-transform: uppercase;
+    color: var(--primary);
+    text-shadow: 1px 1px 3px var(--black);
+    letter-spacing: 0.2em;
+    transform: translateY(-100%);
+    transition: all 1s;
+  }
+
+  &.game-over {
+    .board__inner {
+      opacity: 0.3;
+    }
+
+    .board__gameover {
+      transform: translateY(0);
     }
   }
 }
