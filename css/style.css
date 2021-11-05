@@ -89,6 +89,7 @@ h1 {
   height: 11.75rem;
   perspective: 1000px;
   cursor: pointer;
+  transition: all 1s;
 }
 
 .card img {
@@ -105,7 +106,8 @@ h1 {
   transform-style: preserve-3d;
 }
 
-.card.flipped .card__inner {
+.card.flipped .card__inner,
+.card.matched .card__inner {
   transform: rotateY(180deg);
 }
 
@@ -119,7 +121,7 @@ h1 {
   border: 0.25rem solid var(--white);
   border-radius: 0.25rem;
   box-shadow: 2px 2px 4px var(--primary);
-  transition: all 0.25s;
+  transition: all 1s;
 }
 
 .card:hover .card__back,
@@ -138,6 +140,15 @@ h1 {
 .card__front {
   background-color: var(--accent-3);
   transform: rotateY(180deg);
+}
+
+.card.matched {
+  opacity: 0.5;
+}
+
+.card.matched .card__front {
+  background-color: var(--accent-1);
+  border-color: var(--primary);
 }
 
 @media screen and (min-width: 800px) {

@@ -1,19 +1,21 @@
 const images = Array.from(Array(12).keys());
 const board = document.querySelector(".board__inner");
-console.log(images);
 
 class Game {
   constructor() {
-    this.gameSize = 12;
+    this.gameSize = 4;
 
     board.addEventListener("click", this._cardClick.bind(this));
     this._initGame();
   }
 
   _initGame() {
-    const cardList = Array.from(Array(this.gameSize).keys());
-    this.cards = [...cardList, ...cardList].sort((x, y) => Math.random() - 0.5);
+    this.cardList = Array.from(Array(this.gameSize).keys());
+    this.cards = [...this.cardList, ...this.cardList].sort(
+      (x, y) => Math.random() - 0.5
+    );
     this.moves = [];
+    this.matches = 0;
 
     this.cards.forEach((cardNum, i) => {
       const card = document.createElement("div");
@@ -29,23 +31,37 @@ class Game {
           </div>`;
 
       board.append(card);
-      //   board.insertAdjacentHTML("beforeend", html);
     });
+    console.log(this.cards);
   }
 
   _cardClick(e) {
     const card = e.target.closest(".card");
     const cardNum = card.dataset.card;
 
-    if (this.moves.find((v) => v === cardNum) || this.moves.length >= 2) return;
+    if (
+      this.moves.find((v) => v === cardNum) ||
+      this.moves.length >= 2 ||
+      card.classList.contains("matched")
+    )
+      return;
+
     this.moves.push(cardNum);
     card.classList.add("flipped");
     if (this.moves.length >= 2) return this._checkMatch();
   }
 
   _checkMatch() {
-    console.log(this.moves);
+    const [move1, move2] = this.moves;
     const cardEl = document.querySelectorAll(".card");
+
+    if (this.cards[move1] === this.cards[move2]) {
+      console.log("MATCH!!");
+      this.matches++;
+      cardEl[move1].classList.add("matched");
+      cardEl[move2].classList.add("matched");
+    }
+
     setTimeout(() => {
       cardEl.forEach((c) => c.classList.remove("flipped"));
       this.moves = [];
