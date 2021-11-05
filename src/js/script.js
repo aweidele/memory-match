@@ -36,20 +36,20 @@ class Game {
   _cardClick(e) {
     const card = e.target.closest(".card");
     const cardNum = card.dataset.card;
-    if (this.moves.length === 2) return this._checkMatch();
-    if (this.moves.find((v) => v === cardNum)) return;
 
+    if (this.moves.find((v) => v === cardNum) || this.moves.length >= 2) return;
     this.moves.push(cardNum);
-    console.log(this.moves);
     card.classList.add("flipped");
+    if (this.moves.length >= 2) return this._checkMatch();
   }
 
   _checkMatch() {
+    console.log(this.moves);
     const cardEl = document.querySelectorAll(".card");
-    setTimeout(
-      () => cardEl.forEach((c) => c.classList.remove("flipped")),
-      1000
-    );
+    setTimeout(() => {
+      cardEl.forEach((c) => c.classList.remove("flipped"));
+      this.moves = [];
+    }, 2000);
   }
 }
 
